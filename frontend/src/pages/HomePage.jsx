@@ -4,10 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useSocket } from "../providers/SocketProvider";
 
 const HomePage = () => {
-  // const myObject = {
-  //   239: { name: "a", add: "blr" },
-  //   345: { name: "a", add: "blr" },
-  // };
   const navigate = useNavigate();
   const [roomId, setRoomId] = useState(123);
   const [name, setName] = useState("Akshi");
