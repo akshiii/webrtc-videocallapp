@@ -1,16 +1,18 @@
 import "./App.css";
-import PeerService from "./connection/PeerService";
+import { Routes, Route } from "react-router-dom";
+import { SocketProvider } from "./providers/SocketProvider";
+import HomePage from "./pages/HomePage";
+import RoomPage from "./pages/RoomPage";
 
 function App() {
-  async function enterLobby() {
-    let peer1SDP = await PeerService.createOffer();
-    console.log("Peer 1 sdp generated", JSON.stringify(peer1SDP));
-  }
-
   return (
     <div className="App">
-      <input type="text" placeholder="Enter code" />
-      <button onClick={enterLobby}>Enter Lobby</button>
+      <SocketProvider>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/room/:roomId" element={<RoomPage />} />
+        </Routes>
+      </SocketProvider>
     </div>
   );
 }

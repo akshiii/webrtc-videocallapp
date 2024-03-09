@@ -3,12 +3,22 @@ class PeerService {
 
   constructor() {
     if (!this.peer) {
-      this.peer = new RTCPeerConnection();
+      this.peer = new RTCPeerConnection({
+        iceServers: [
+          {
+            urls: ["stun:stun.l.google.com:19302", "stun:global.stun.twilio.com:3478"],
+          },
+        ],
+      });
     }
     // this.peer.onicecandidate = (e) => {
     //   console.log("New Ice candidate! reprintimg SDP = ");
     //   this.sdp = this.peer.localDescription;
     // };
+  }
+
+  addTrack(track, stream) {
+    this.peer.addTrack(track, stream);
   }
 
   /**
