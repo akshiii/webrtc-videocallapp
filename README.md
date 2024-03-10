@@ -2,7 +2,7 @@
 
 A webRTC app with basic communication and sharing messages on ReactJs, with Signalling server on nodeJS and using Ant UI library for better UI
 
-Steps to run this app on your local:
+##Steps to run this app on your local:
 
 1. cd /frontend
 2. npm install
@@ -11,7 +11,8 @@ Steps to run this app on your local:
 5. npm install
 6. npm start ( This will start server on PORT(8001)
 
-Steps to test webRTC:
+##Steps to test webRTC:
+
 1. Open app in 2 browser windows.
 2. Enter name and room id and Go To Room (Peer 1)
 3. Do the same in another window with same Room id(Peer 2).
