@@ -2,6 +2,7 @@ import "../App.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSocket } from "../providers/SocketProvider";
+import { Input, Button } from "antd";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -16,20 +17,24 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <h3>Create or Join room</h3>
-      <input
+      <h3 className="heading">Create or Join room</h3>
+      <Input
+        className="nameInput"
         value={name}
         onChange={(e) => setName(e.target.value)}
         type="text"
         placeholder="Enter your display name.."
       />
-      <input
+      <Input
         value={roomId}
+        className="nameInput"
         onChange={(e) => setRoomId(e.target.value)}
         type="text"
-        placeholder="Enter room name.."
+        placeholder="Enter room id..Eg: 123"
       />
-      <button onClick={joinRoom}>Go to Room</button>
+      <Button type="primary" className="joinBtn" onClick={joinRoom}>
+        Go to Room
+      </Button>
     </div>
   );
 };

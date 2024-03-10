@@ -10,3 +10,42 @@
   height: 500px;
   /* width: 100%; */
 }
+.homepage-container {
+  display: flex;
+  background-color: bisque;
+  margin: 90px;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.nameInput {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  margin: 15px;
+}
+.heading {
+  display: flex;
+  justify-content: center;
+}
+
+.joinBtn {
+  margin-bottom: 15px;
+}
+
+.chatwindowCol {
+  background-color: bisque;
+  position: relative;
+  height: 500px; /* Set container height */
+  border: 1px solid #ccc;
+}
+.chatwindow-container {
+}
+.chatwindow-sendBtn {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

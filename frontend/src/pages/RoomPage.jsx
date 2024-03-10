@@ -20,6 +20,7 @@ const RoomPage = () => {
   const [dataChannel, setDataChannel] = useState(null);
   const [isAnotherUser, setIsAnotherUser] = useState(false);
   const [message, setMessage] = useState("");
+  const [showEndCall, setShowEndCall] = useState("false");
 
   useEffect(() => {
     socket.on("user:joined", handleUserJoined);
@@ -83,6 +84,7 @@ const RoomPage = () => {
     let peer1SDP = await peerService.createOffer();
     console.log("Peer 1 sdp generated");
     socket.emit("offer-created", { to: remoteSocketId, offer: peer1SDP });
+    setShowEndCall(true);
   }, []);
 
   const handleUserJoined = useCallback(async ({ id }) => {
@@ -121,6 +123,15 @@ const RoomPage = () => {
     dataChannel.send(msg);
   };
 
+  const endCall = () => {
+    console.log("Ending call");
+    if (peerService) {
+      peerService.peer.close(); // Close the peer connection
+      // peerService = null; // Set the peerConnection variable to null
+      setShowEndCall(false);
+    }
+  };
+
   return (
     <>
       <Row>
@@ -142,7 +153,7 @@ const RoomPage = () => {
             playsInline
           ></video>
         </Col>
-        <Col span={8}>
+        <Col span={8} className="chatwindowCol">
           <ChatWindow sendCallback={sendMessage} />
         </Col>
       </Row>
@@ -156,7 +167,7 @@ const RoomPage = () => {
         />
         <button onClick={sendMessage}>Send in chat</button> */}
       <div id="controls">
-        {!isAnotherUser ? (
+        {!showEndCall && !isAnotherUser ? (
           <VideoCameraAddOutlined
             style={{
               fontSize: "50px",
@@ -172,22 +183,25 @@ const RoomPage = () => {
             }}
           />
         )}
-        <MessageTwoTone
+        {/* <MessageTwoTone
           twoToneColor="#eb2f96"
           height="30px"
           style={{
             fontSize: "50px",
             margin: "20px",
           }}
-        />
-        <PhoneTwoTone
-          twoToneColor="darkred"
-          rotate={225}
-          style={{
-            fontSize: "50px",
-            margin: "20px",
-          }}
-        />
+        /> */}
+        {showEndCall && (
+          <PhoneTwoTone
+            twoToneColor="darkred"
+            rotate={225}
+            style={{
+              fontSize: "50px",
+              margin: "20px",
+            }}
+            onClick={endCall}
+          />
+        )}
       </div>
     </>
   );

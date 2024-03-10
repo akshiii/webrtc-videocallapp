@@ -1,5 +1,6 @@
 import { Button, Input, Space } from "antd";
 import { useState } from "react";
+import "../App.css";
 
 const ChatWindow = ({ sendCallback }) => {
   const [msg, setMsg] = useState("");
@@ -8,8 +9,8 @@ const ChatWindow = ({ sendCallback }) => {
     setMsg("");
   };
   return (
-    <div>
-      <Space.Compact style={{ width: "100%" }}>
+    <div className="chatwindow-container">
+      <Space.Compact className="chatwindow-sendBtn" style={{ width: "100%" }}>
         <Input
           value={msg}
           onChange={(e) => setMsg(e.target.value)}
